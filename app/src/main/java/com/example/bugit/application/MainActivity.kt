@@ -12,7 +12,9 @@ import androidx.compose.ui.Modifier
 import com.example.bugit.android.theme.BugItTheme
 import com.example.bugit.android.theme.rememberWindowSizeClass
 import com.example.bugit.application.navigation.RootNavigation
+import dagger.hilt.android.AndroidEntryPoint
 
+@AndroidEntryPoint
 class MainActivity : ComponentActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
