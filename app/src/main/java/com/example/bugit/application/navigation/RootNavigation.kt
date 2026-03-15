@@ -7,19 +7,18 @@ import androidx.compose.animation.fadeOut
 import androidx.compose.animation.slideInHorizontally
 import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.rememberNavController
-import com.example.bugit.application.navigation.Screens.HomeScreen
+import com.example.bugit.application.navigation.Screens.NewBug
 
 @Composable
-fun RootNavigation() {
+fun RootNavigation(navController: NavHostController) {
     val duration = 550
     val slideDuration = 750
 
-    val navController = rememberNavController()
     NavHost(
         navController = navController,
-        startDestination = HomeScreen,
+        startDestination = NewBug,
         enterTransition = {
             slideInHorizontally(
                 initialOffsetX = { it },

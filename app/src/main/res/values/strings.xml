@@ -23,5 +23,8 @@
     <string name="validation_error_image_type">Sorry, this image format isn’t supported.</string>
     <string name="validation_error_image_size">That image is too big! Please keep it under %1$d MB.</string>
     <string name="validation_error_too_long">Too many characters (%1$d/%2$d). Try shortening it.</string>
+    <string name="submit_bug_report">Submit Bug Report</string>
+    <string name="new_bug">New Bug</string>
+    <string name="history">History</string>
 
 </resources>

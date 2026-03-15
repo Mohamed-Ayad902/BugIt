@@ -15,7 +15,7 @@ import com.example.bugit.android.theme.AppTheme.typography
 
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 
-    composable<Screens.HomeScreen> {
+    composable<Screens.NewBug> {
         DummyScreen(screenName = "Home Screen", onClick = {
             navController.navigate(Screens.BugsList)
         })

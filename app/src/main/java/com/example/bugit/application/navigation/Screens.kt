@@ -5,7 +5,7 @@ import kotlinx.serialization.Serializable
 sealed interface Screens {
 
     @Serializable
-    data object HomeScreen : Screens
+    data object NewBug : Screens
 
     @Serializable
     data object  BugsList : Screens
