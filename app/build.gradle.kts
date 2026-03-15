@@ -1,6 +1,8 @@
 plugins {
     alias(libs.plugins.android.application)
     alias(libs.plugins.kotlin.compose)
+    alias(libs.plugins.hilt)
+    alias(libs.plugins.ksp)
 }
 
 android {
@@ -8,6 +10,21 @@ android {
     compileSdk {
         version = release(36) {
             minorApiLevel = 1
+        }
+    }
+
+    packaging {
+        resources {
+            // These files are metadata for standard Java environments
+            // android uses D8/R8 to compile classes into DEX files,
+            // so these INDEX and DEPENDENCY files are redundant and cause merge conflicts
+            excludes += "/META-INF/INDEX.LIST"
+            excludes += "/META-INF/DEPENDENCIES"
+
+            // exclude redundant license files to keep the apk size smaller
+            // and avoid potential merge conflicts between different Google libraries
+            excludes += "/META-INF/LICENSE.md"
+            excludes += "/META-INF/LICENSE-notice.md"
         }
     }
 
@@ -40,6 +57,9 @@ android {
 }
 
 dependencies {
+    implementation(libs.contracts)
+    implementation(libs.core)
+
     implementation(libs.androidx.core.ktx)
     implementation(libs.androidx.lifecycle.runtime.ktx)
     implementation(libs.androidx.activity.compose)
@@ -55,4 +75,12 @@ dependencies {
     androidTestImplementation(libs.androidx.compose.ui.test.junit4)
     debugImplementation(libs.androidx.compose.ui.tooling)
     debugImplementation(libs.androidx.compose.ui.test.manifest)
+
+    // Hilt Setup
+    implementation(libs.hilt.android)
+    ksp(libs.hilt.compiler)
+    implementation(libs.androidx.hilt.navigation.compose)
+
+    // Navigation
+    implementation(libs.androidx.navigation.compose)
 }

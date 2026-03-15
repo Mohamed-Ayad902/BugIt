@@ -1,3 +1,27 @@
 <resources>
     <string name="app_name">BugIt</string>
+
+    <!-- General & Local Errors -->
+    <string name="error_validation">Oops! Please double-check your info and try again.</string>
+    <string name="error_local_io">We had trouble saving that to your device. Please check your storage.</string>
+    <string name="error_serialization">Something went wrong while processing data. We’re looking into it!</string>
+
+    <!-- Network Errors -->
+    <string name="error_network_connection">No internet connection. Please check your Wi-Fi or data.</string>
+    <string name="error_bad_request">Something didn\'t look right with that request. Give it another shot?</string>
+    <string name="error_unauthorized">Your session expired. Please sign in again to continue.</string>
+    <string name="error_forbidden">You don\'t have permission to view this right now.</string>
+    <string name="error_not_found">We couldn\'t find what you\'re looking for. It might have moved.</string>
+    <string name="error_server">Our servers are taking a quick nap. Please try again in a few minutes.</string>
+    <string name="error_unhandled">An unexpected glitch occurred. Our team is on the case!</string>
+
+    <!-- Unknown -->
+    <string name="error_unknown">Something went wrong, but we’re not sure what. Try restarting the app?</string>
+
+    <!-- Validation Messages -->
+    <string name="validation_error_empty">This field can’t be empty.</string>
+    <string name="validation_error_image_type">Sorry, this image format isn’t supported.</string>
+    <string name="validation_error_image_size">That image is too big! Please keep it under %1$d MB.</string>
+    <string name="validation_error_too_long">Too many characters (%1$d/%2$d). Try shortening it.</string>
+
 </resources>
