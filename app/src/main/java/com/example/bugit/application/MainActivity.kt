@@ -1,5 +1,8 @@
 package com.example.bugit.application
 
+import android.content.Intent
+import android.net.Uri
+import android.os.Build
 import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
@@ -27,12 +30,19 @@ import com.example.bugit.android.theme.rememberWindowSizeClass
 import com.example.bugit.application.navigation.BottomNavBar
 import com.example.bugit.application.navigation.RootNavigation
 import dagger.hilt.android.AndroidEntryPoint
+import jakarta.inject.Inject
+import kotlin.jvm.java
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
+    @Inject
+    lateinit var sharedImageHandler: SharedImageHandler
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        if (savedInstanceState == null) {
+            handleIntent(intent)
+        }
         enableEdgeToEdge()
         setContent {
             val snackbarHostState = remember { SnackbarHostState() }
@@ -69,6 +79,28 @@ class MainActivity : ComponentActivity() {
                         }
                     }
                 }
+            }
+        }
+    }
+    override fun onNewIntent(intent: Intent) {
+        super.onNewIntent(intent)
+        setIntent(intent)
+        handleIntent(intent)
+    }
+
+    private fun handleIntent(intent: Intent?) {
+        if (intent?.action == Intent.ACTION_SEND && intent.type?.startsWith("image/") == true) {
+            val imageUri = if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.TIRAMISU) {
+                intent.getParcelableExtra(Intent.EXTRA_STREAM, Uri::class.java)
+            } else {
+                @Suppress("DEPRECATION")
+                intent.getParcelableExtra(Intent.EXTRA_STREAM)
+            }
+
+            imageUri?.let {
+                sharedImageHandler.updateSharedImage(it.toString())
+                intent.removeExtra(Intent.EXTRA_STREAM)
+                intent.action = Intent.ACTION_MAIN
             }
         }
     }
