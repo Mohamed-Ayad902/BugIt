@@ -17,6 +17,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.staticCompositionLocalOf
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.res.painterResource
 import com.example.bugit.R
 import com.example.bugit.android.theme.AppTheme.colors
@@ -40,7 +41,7 @@ fun AppSnackBar(data: SnackbarData) {
     val visuals = data.visuals as? AppSnackbarVisuals
     val (backgroundColor, icon) = when (visuals?.type) {
         SnackbarType.ERROR -> colors.errorContainer to R.drawable.ic_error
-        SnackbarType.SUCCESS -> colors.tertiaryContainer to R.drawable.success
+        SnackbarType.SUCCESS -> colors.tertiary to R.drawable.success
         else -> colors.surfaceVariant to R.drawable.ic_warning
     }
 
@@ -60,7 +61,7 @@ fun AppSnackBar(data: SnackbarData) {
         }
     ) {
         Row(verticalAlignment = Alignment.CenterVertically) {
-            Icon(painter = painterResource(icon), null)
+            Icon(painter = painterResource(icon), null, tint = Color.Unspecified)
             Spacer(Modifier.width(dimens.small.plus(dimens.extraSmall)))
             AppText(data.visuals.message,)
         }

@@ -11,9 +11,9 @@ import kotlinx.coroutines.flow.receiveAsFlow
 import kotlinx.coroutines.flow.update
 import kotlinx.coroutines.launch
 
-internal interface State // Represents UI states
-internal interface Intent // Represents user intents or actions
-internal interface Event // Represents one time events
+interface State // Represents UI states
+interface Intent // Represents user intents or actions
+interface Event // Represents one time events
 
 
 /**
@@ -23,7 +23,7 @@ internal interface Event // Represents one time events
  * @param E Represents one-time events.
  * @param I Represents user intents or actions.
  */
-internal abstract class BaseViewModel<S : State, I : Intent, E : Event>(initialState: S) :
+abstract class BaseViewModel<S : State, I : Intent, E : Event>(initialState: S) :
     ViewModel() {
 
     // Holds the UI state

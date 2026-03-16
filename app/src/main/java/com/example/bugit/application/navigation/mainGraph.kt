@@ -12,13 +12,12 @@ import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.bugit.android.theme.AppTheme.typography
+import com.example.bugit.screen.report_bug.ReportBugScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
 
     composable<Screens.NewBug> {
-        DummyScreen(screenName = "Home Screen", onClick = {
-            navController.navigate(Screens.BugsList)
-        })
+        ReportBugScreen()
     }
     composable<Screens.BugsList> {
         DummyScreen("Bugs List Screen")

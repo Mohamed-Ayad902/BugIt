@@ -26,5 +26,19 @@
     <string name="submit_bug_report">Submit Bug Report</string>
     <string name="new_bug">New Bug</string>
     <string name="history">History</string>
+    <string name="bug_reported_successfully">Bug reported successfully</string>
+    <string name="bugit_logo">Bug It Logo</string>
+    <string name="bug_it">Bug It</string>
+    <string name="notion_connected">Notion Connected</string>
+    <string name="google_sheets_connected">Google Sheets Connected</string>
+    <string name="visual_evidence">VISUAL EVIDENCE</string>
+    <string name="upload_screenshot">Upload Screenshot</string>
+    <string name="attach_an_image_of_the_bug_you_encountered">Attach an image of the bug you encountered</string>
+    <string name="provide_details_about_what_went_wrong_steps_to_reproduce_and_expected_behavior">Provide details about what went wrong, steps to reproduce, and expected behavior.</string>
+    <string name="bug_description">BUG DESCRIPTION</string>
+    <string name="upload_bug_image">Upload Bug Image</string>
+    <string name="required">Required</string>
+    <string name="reporting_to">"Reporting to: "</string>
+    <string name="project_bugit_tracker_v1">Project_Bugit_Tracker_v1</string>
 
 </resources>

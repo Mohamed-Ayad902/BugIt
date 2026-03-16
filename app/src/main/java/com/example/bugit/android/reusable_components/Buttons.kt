@@ -1,5 +1,6 @@
 package com.example.bugit.android.reusable_components
 
+import android.content.res.Configuration
 import androidx.annotation.DrawableRes
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Box
@@ -15,6 +16,7 @@ import androidx.compose.material3.Button
 import androidx.compose.material3.ButtonDefaults
 import androidx.compose.material3.CircularProgressIndicator
 import androidx.compose.material3.Icon
+import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
@@ -67,7 +69,7 @@ internal fun AppButton(
     disabledContainerColor: Color = colors.onSurface.copy(alpha = 0.12f),
     disabledContentColor: Color = colors.onSurface.copy(alpha = 0.38f),
     fontWeight: FontWeight = FontWeight.Bold,
-    textStyle: TextStyle = typography.titleMedium,
+    textStyle: TextStyle = typography.bodyLarge,
     progressColor: Color = colors.onPrimary,
 ) {
     val isButtonEnabled = enabled && !loading
@@ -123,36 +125,38 @@ internal fun AppButton(
     }
 }
 
-@Preview(showBackground = true)
+@Preview(showBackground = true, uiMode = Configuration.UI_MODE_NIGHT_YES,)
 @Composable
 private fun PreviewAppButtonAllStates() {
     BugItTheme(rememberWindowSizeClass()) {
-        Column(
-            modifier = Modifier.padding(dimens.smallMedium),
-            verticalArrangement = Arrangement.spacedBy(dimens.smallMedium)
-        ) {
-            AppButton(
-                text = stringResource(R.string.submit_bug_report),
-                onClick = {}
-            )
+        Surface {
+            Column(
+                modifier = Modifier.padding(dimens.smallMedium),
+                verticalArrangement = Arrangement.spacedBy(dimens.smallMedium)
+            ) {
+                AppButton(
+                    text = stringResource(R.string.submit_bug_report),
+                    onClick = {}
+                )
 
-            AppButton(
-                text = stringResource(R.string.submit_bug_report),
-                iconRes = android.R.drawable.ic_menu_send,
-                onClick = {}
-            )
+                AppButton(
+                    text = stringResource(R.string.submit_bug_report),
+                    iconRes = R.drawable.send,
+                    onClick = {}
+                )
 
-            AppButton(
-                text = stringResource(R.string.submit_bug_report),
-                loading = true,
-                onClick = {}
-            )
+                AppButton(
+                    text = stringResource(R.string.submit_bug_report),
+                    loading = true,
+                    onClick = {}
+                )
 
-            AppButton(
-                text = stringResource(R.string.submit_bug_report),
-                enabled = false,
-                onClick = {}
-            )
+                AppButton(
+                    text = stringResource(R.string.submit_bug_report),
+                    enabled = false,
+                    onClick = {}
+                )
+            }
         }
     }
 }
