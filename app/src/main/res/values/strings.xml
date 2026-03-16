@@ -41,5 +41,8 @@
     <string name="reporting_to">"Reporting to: "</string>
     <string name="project_bugit_tracker_v1">Project_Bugit_Tracker_v1</string>
     <string name="report_bug">Report Bug</string>
+    <string name="bugs_history">Bugs History</string>
+    <string name="no_bugs_reported_yet">No bugs reported yet.</string>
+    <string name="bug_screenshot">Bug Screenshot</string>
 
 </resources>

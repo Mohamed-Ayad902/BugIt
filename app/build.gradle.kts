@@ -87,4 +87,5 @@ dependencies {
 
     // Coil
     implementation(libs.coil.compose.android)
+    implementation(libs.coil.network.okhttp)
 }

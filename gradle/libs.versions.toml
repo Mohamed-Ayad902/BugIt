@@ -48,6 +48,7 @@ androidx-navigation-compose = { group = "androidx.navigation", name = "navigatio
 
 # Coil
 coil-compose-android = { module = "io.coil-kt.coil3:coil-compose-android", version.ref = "coilComposeAndroid" }
+coil-network-okhttp = { module = "io.coil-kt.coil3:coil-network-okhttp", version.ref = "coilComposeAndroid" }
 
 [plugins]
 android-application = { id = "com.android.application", version.ref = "agp" }

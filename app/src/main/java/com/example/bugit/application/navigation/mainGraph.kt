@@ -12,6 +12,7 @@ import androidx.navigation.NavHostController
 import androidx.navigation.compose.composable
 import com.example.bugit.android.reusable_components.AppText
 import com.example.bugit.android.theme.AppTheme.typography
+import com.example.bugit.screen.bugs_history.BugsHistoryScreen
 import com.example.bugit.screen.report_bug.ReportBugScreen
 
 fun NavGraphBuilder.mainGraph(navController: NavHostController) {
@@ -20,7 +21,7 @@ fun NavGraphBuilder.mainGraph(navController: NavHostController) {
         ReportBugScreen()
     }
     composable<Screens.BugsList> {
-        DummyScreen("Bugs List Screen")
+        BugsHistoryScreen()
     }
 }
 
