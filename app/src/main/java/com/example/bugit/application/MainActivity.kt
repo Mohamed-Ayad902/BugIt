@@ -75,7 +75,7 @@ class MainActivity : ComponentActivity() {
                                 .fillMaxSize()
                                 .padding(innerPadding)
                         ) {
-                            RootNavigation(navController)
+                            RootNavigation(navController, sharedImageHandler)
                         }
                     }
                 }
