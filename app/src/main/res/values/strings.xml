@@ -40,5 +40,6 @@
     <string name="required">Required</string>
     <string name="reporting_to">"Reporting to: "</string>
     <string name="project_bugit_tracker_v1">Project_Bugit_Tracker_v1</string>
+    <string name="report_bug">Report Bug</string>
 
 </resources>

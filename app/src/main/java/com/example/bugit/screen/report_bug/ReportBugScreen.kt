@@ -14,7 +14,6 @@ import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
-import androidx.compose.material3.Scaffold
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -40,7 +39,6 @@ import com.example.bugit.screen.report_bug.components.HeaderSection
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugEvents
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugFields
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugFields.Description
-import com.example.bugit.screen.report_bug.viewmodel.ReportBugIntents
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugIntents.SubmitReport
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugIntents.UpdateField
 import com.example.bugit.screen.report_bug.viewmodel.ReportBugVM

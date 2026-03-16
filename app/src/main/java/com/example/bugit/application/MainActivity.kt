@@ -1,5 +1,6 @@
 package com.example.bugit.application
 
+import android.app.Activity
 import android.content.Intent
 import android.net.Uri
 import android.os.Build
@@ -28,10 +29,10 @@ import com.example.bugit.android.reusable_components.SnackbarController
 import com.example.bugit.android.theme.BugItTheme
 import com.example.bugit.android.theme.rememberWindowSizeClass
 import com.example.bugit.application.navigation.BottomNavBar
+import com.example.bugit.application.navigation.BugReportFAB
 import com.example.bugit.application.navigation.RootNavigation
 import dagger.hilt.android.AndroidEntryPoint
 import jakarta.inject.Inject
-import kotlin.jvm.java
 
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
@@ -68,20 +69,30 @@ class MainActivity : ComponentActivity() {
                                 )
                             }
                         },
-                        bottomBar = { BottomNavBar(navController = navController) }
+                        bottomBar = { BottomNavBar(navController = navController) },
+                        floatingActionButton = {
+                            BugReportFAB(
+                                navController = navController,
+                                sharedImageHandler = sharedImageHandler,
+                                scope = scope,
+                                context = this,
+                                activity = (this as? Activity)
+                            )
+                        }
                     ) { innerPadding ->
                         Column(
                             Modifier
                                 .fillMaxSize()
                                 .padding(innerPadding)
                         ) {
-                            RootNavigation(navController, sharedImageHandler)
+                            RootNavigation(navController)
                         }
                     }
                 }
             }
         }
     }
+
     override fun onNewIntent(intent: Intent) {
         super.onNewIntent(intent)
         setIntent(intent)

@@ -9,11 +9,10 @@ import androidx.compose.animation.slideOutHorizontally
 import androidx.compose.runtime.Composable
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
-import com.example.bugit.application.SharedImageHandler
 import com.example.bugit.application.navigation.Screens.NewBug
 
 @Composable
-fun RootNavigation(navController: NavHostController, sharedImageHandler: SharedImageHandler) {
+fun RootNavigation(navController: NavHostController) {
     val duration = 550
     val slideDuration = 750
 
@@ -48,6 +47,6 @@ fun RootNavigation(navController: NavHostController, sharedImageHandler: SharedI
             ) + fadeOut(animationSpec = tween(duration))
         }
     ) {
-        mainGraph(navController, sharedImageHandler)
+        mainGraph(navController)
     }
 }
