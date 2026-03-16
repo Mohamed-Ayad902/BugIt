@@ -14,11 +14,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.layout.ContentScale
+import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.res.stringResource
 import androidx.compose.ui.text.style.TextOverflow
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import coil3.compose.AsyncImage
+import coil3.request.ImageRequest
+import coil3.request.allowHardware
 import com.example.bugit.R
 import com.example.bugit.android.reusable_components.AppText
 import com.example.bugit.android.theme.AppTheme.colors
@@ -41,7 +44,10 @@ fun BugHistoryItem(bug: Bug) {
             .padding(dimens.smallMedium)
     ) {
         AsyncImage(
-            model = bug.screenshotUri,
+            model = ImageRequest.Builder(LocalContext.current)
+                .data(bug.screenshotUri)
+                .allowHardware(false)
+                .build(),
             contentDescription = stringResource(R.string.bug_screenshot),
             contentScale = ContentScale.Crop,
             modifier = Modifier
