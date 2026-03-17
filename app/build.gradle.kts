@@ -88,4 +88,11 @@ dependencies {
     // Coil
     implementation(libs.coil.compose.android)
     implementation(libs.coil.network.okhttp)
+
+    // WorkManager
+    implementation(libs.androidx.work.runtime.ktx)
+
+    // Hilt Extension for WorkManager
+    implementation(libs.androidx.hilt.work)
+    ksp(libs.androidx.hilt.compiler)
 }

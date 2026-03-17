@@ -26,7 +26,7 @@ import com.example.core.model.ReportingDestination.GOOGLE_SHEETS
 import com.example.core.model.ReportingDestination.NOTION
 
 @Composable
-fun HeaderSection(activeTracker: ReportingDestination?) {
+fun HeaderSection(activeTracker: ReportingDestination?, isSyncing: Boolean) {
     Row(
         modifier = Modifier.fillMaxWidth(),
         verticalAlignment = Alignment.CenterVertically
@@ -45,16 +45,17 @@ fun HeaderSection(activeTracker: ReportingDestination?) {
             modifier = Modifier.padding(start = dimens.small)
         )
         Spacer(modifier = Modifier.weight(1f))
-        if (activeTracker != null) TrackerConnectionPill(activeTracker)
+        if (activeTracker != null) TrackerConnectionPill(activeTracker, isSyncing)
     }
 }
 
 @Composable
-private fun TrackerConnectionPill(activeTracker: ReportingDestination) {
-    val tracker = when (activeTracker) {
+private fun TrackerConnectionPill(activeTracker: ReportingDestination, isSyncing: Boolean) {
+    val tracker = if (isSyncing) stringResource(R.string.syncing_report) else when (activeTracker) {
         GOOGLE_SHEETS -> stringResource(R.string.google_sheets_connected)
         NOTION -> stringResource(R.string.notion_connected)
     }
+    val dotColor = if (isSyncing) colors.secondary else colors.tertiary
     Row(
         verticalAlignment = Alignment.CenterVertically,
         modifier = Modifier
@@ -69,7 +70,7 @@ private fun TrackerConnectionPill(activeTracker: ReportingDestination) {
                 vertical = dimens.small.minus(dimens.extraSmall / 2)
             )
     ) {
-        PulsingDot()
+        PulsingDot(dotColor)
         AppText(
             modifier = Modifier.padding(start = dimens.small),
             text = tracker,

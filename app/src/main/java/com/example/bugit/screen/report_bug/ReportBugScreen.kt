@@ -5,15 +5,22 @@ import androidx.activity.compose.rememberLauncherForActivityResult
 import androidx.activity.result.PickVisualMediaRequest
 import androidx.activity.result.contract.ActivityResultContracts
 import androidx.activity.result.contract.ActivityResultContracts.PickVisualMedia.ImageOnly
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.expandVertically
+import androidx.compose.animation.fadeIn
+import androidx.compose.animation.fadeOut
+import androidx.compose.animation.shrinkVertically
 import androidx.compose.foundation.background
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.Spacer
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.fillMaxWidth
 import androidx.compose.foundation.layout.height
 import androidx.compose.foundation.layout.imePadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.rememberScrollState
 import androidx.compose.foundation.verticalScroll
+import androidx.compose.material3.LinearProgressIndicator
 import androidx.compose.material3.Surface
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
@@ -68,6 +75,11 @@ fun ReportBugScreen(
 
     ObserveAsState(viewmodel.eventFlow) { event ->
         when (event) {
+            ReportBugEvents.Queued -> snackbarController.show(
+                message = context.getString(R.string.bug_report_queued_uploading_in_background),
+                type = SnackbarType.INFO
+            )
+
             is ReportBugEvents.Failure -> snackbarController.show(
                 message = context.getString(event.exception.toUserMessageRes()),
                 type = SnackbarType.ERROR
@@ -87,6 +99,7 @@ fun ReportBugScreen(
         description = state.description.value,
         descriptionValidation = state.description.result,
         isLoading = state.isLoading,
+        isLoadingInBackground = state.isLoadingInBackground,
         onImagePickRequest = { photoPickerLauncher.launch(PickVisualMediaRequest(ImageOnly)) },
         onDescriptionChange = { viewmodel.sendIntent(UpdateField(Description, it)) },
         onSubmitClick = { viewmodel.sendIntent(SubmitReport) },
@@ -102,6 +115,7 @@ private fun ReportBugContent(
     description: String,
     descriptionValidation: ValidationResult,
     isLoading: Boolean,
+    isLoadingInBackground: Boolean,
     onImagePickRequest: () -> Unit,
     onDescriptionChange: (String) -> Unit,
     onImageClearRequest: () -> Unit,
@@ -116,7 +130,22 @@ private fun ReportBugContent(
             .verticalScroll(rememberScrollState())
             .imePadding()
     ) {
-        HeaderSection(activeTracker)
+        HeaderSection(activeTracker, isLoadingInBackground)
+        AnimatedVisibility(
+            visible = isLoadingInBackground,
+            enter = fadeIn() + expandVertically(),
+            exit = fadeOut() + shrinkVertically()
+        ) {
+            LinearProgressIndicator(
+                modifier = Modifier
+                    .fillMaxWidth()
+                    .padding(top = dimens.smallMedium)
+                    .height(dimens.extraSmall),
+                color = colors.primary,
+                trackColor = colors.primary.copy(alpha = 0.3f)
+            )
+        }
+
         Spacer(Modifier.height(dimens.large))
         BugForms(
             imageUri = imageUri,
@@ -152,6 +181,7 @@ private fun Preview() {
                 description = "",
                 descriptionValidation = ValidationResult.Invalid.Empty,
                 isLoading = false,
+                isLoadingInBackground = true,
                 onImagePickRequest = {},
                 onDescriptionChange = {},
                 onSubmitClick = {},

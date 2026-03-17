@@ -44,5 +44,7 @@
     <string name="bugs_history">Bugs History</string>
     <string name="no_bugs_reported_yet">No bugs reported yet.</string>
     <string name="bug_screenshot">Bug Screenshot</string>
+    <string name="bug_report_queued_uploading_in_background">Bug report queued, uploading in background..</string>
+    <string name="syncing_report">Syncing Report...</string>
 
 </resources>

@@ -14,6 +14,7 @@ data class ReportBugState(
     val imageUri: FormField<String> = FormField(""),
     val description: FormField<String> = FormField(""),
     val isLoading: Boolean = false,
+    val isLoadingInBackground: Boolean = false,
 ) : State
 
 enum class ReportBugFields : FieldType {
@@ -29,5 +30,6 @@ sealed interface ReportBugIntents : Intent {
 
 sealed interface ReportBugEvents : Event {
     data class Failure(val exception: BugItExceptions) : ReportBugEvents
+    data object Queued : ReportBugEvents
     data class Success(val bug: Bug) : ReportBugEvents
 }

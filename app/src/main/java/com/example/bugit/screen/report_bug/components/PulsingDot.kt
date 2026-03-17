@@ -14,6 +14,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.getValue
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.graphics.graphicsLayer
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
@@ -21,7 +22,7 @@ import com.example.bugit.android.theme.AppTheme.colors
 import com.example.bugit.android.theme.AppTheme.dimens
 
 @Composable
-fun PulsingDot() {
+fun PulsingDot(dotColor: Color) {
     val infiniteTransition = rememberInfiniteTransition(label = "pulse_transition")
 
     val scale by infiniteTransition.animateFloat(
@@ -72,6 +73,6 @@ fun PulsingDot() {
 @Composable
 private fun Preview() {
     Box(Modifier.size(50.dp), contentAlignment = Alignment.Center) {
-        PulsingDot()
+        PulsingDot(colors.tertiary)
     }
 }
